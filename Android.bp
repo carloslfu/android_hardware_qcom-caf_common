@@ -3,34 +3,37 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+// phone.md's metroid baseline forces the B4.1 prebuilt kernel. Export the
+// matching archived UAPI set to every Qualcomm userspace component; the
+// generic generated set omits the SM8735 display/media headers.
 cc_library_headers {
     name: "audio_kernel_headers",
-    defaults: ["generated_kernel_header_defaults"],
+    defaults: ["prebuilt_kernel_header_defaults"],
 }
 
 cc_library_headers {
     name: "qti_audio_kernel_uapi",
-    defaults: ["generated_kernel_header_defaults"],
+    defaults: ["prebuilt_kernel_header_defaults"],
 }
 
 cc_library_headers {
     name: "qti_display_kernel_headers",
-    defaults: ["generated_kernel_header_defaults"],
+    defaults: ["prebuilt_kernel_header_defaults"],
 }
 
 cc_library_headers {
     name: "qti_ipa_kernel_headers",
-    defaults: ["generated_kernel_header_defaults"],
+    defaults: ["prebuilt_kernel_header_defaults"],
 }
 
 cc_library_headers {
     name: "qti_kernel_headers",
-    defaults: ["generated_kernel_header_defaults"],
+    defaults: ["prebuilt_kernel_header_defaults"],
 }
 
 cc_library_headers {
     name: "smmu_proxy_uapi_header",
-    defaults: ["generated_kernel_header_defaults"],
+    defaults: ["prebuilt_kernel_header_defaults"],
 }
 
 soong_config_module_type {
