@@ -445,10 +445,14 @@ else
     PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/thermal
 endif
 
-# Add wlan to PRODUCT_SOONG_NAMESPACES
-PRODUCT_SOONG_NAMESPACES += \
-    hardware/qcom-caf/wlan \
-    hardware/qcom-caf/wlan/qcwcn
+# Add wlan to PRODUCT_SOONG_NAMESPACES. metroid packages the exact B4.1
+# arm64 Wi-Fi runtime through vendor/nothing, so exporting qcwcn's installable
+# shared variants would give the same vendor paths a second Make owner. The
+# namespace remains available to Soong for qualified source dependencies.
+PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/wlan
+ifneq ($(TARGET_DEVICE),metroid)
+    PRODUCT_SOONG_NAMESPACES += hardware/qcom-caf/wlan/qcwcn
+endif
 
 # Verified Boot
 BOARD_AVB_SYSTEM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
