@@ -8,8 +8,8 @@
 // generic generated set omits the SM8735 display/media headers.
 
 // The metroid Wi-Fi service needs Nothing's WCN7750 implementation, not the
-// generic source factory. Define the prebuilts in the root Soong namespace so
-// they replace the same-named AOSP shared variants instead of creating a
+// generic source factory. Define the core prebuilt in the root Soong namespace
+// so it replaces the same-named AOSP shared variant instead of creating a
 // second installer for the same vendor paths.
 cc_prebuilt_library_shared {
     name: "libwifi-hal",
@@ -41,32 +41,6 @@ cc_prebuilt_library_shared {
     compile_multilib: "64",
     prefer: true,
     proprietary: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "libwifi-system-iface",
-    owner: "nothing",
-    vendor_available: true,
-    product_available: true,
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm64: {
-            srcs: [
-                "//vendor/nothing/metroid:metroid_b4_1_libwifi_system_iface",
-            ],
-            shared_libs: [
-                "libbase",
-                "libc++",
-                "libc",
-                "libm",
-                "libdl",
-            ],
-        },
-    },
-    compile_multilib: "64",
-    prefer: true,
 }
 
 cc_defaults {
