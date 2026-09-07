@@ -13,6 +13,12 @@
 // second installer for the same vendor paths.
 cc_prebuilt_library_shared {
     name: "libwifi-hal",
+    // This root-namespace replacement belongs only to the physical board.
+    // SDK/Goldfish products must keep the AOSP virtual-device implementation.
+    enabled: select(soong_config_variable("phone_md", "metroid_wifi_prebuilt"), {
+        "true": true,
+        default: false,
+    }),
     owner: "nothing",
     strip: {
         none: true,
